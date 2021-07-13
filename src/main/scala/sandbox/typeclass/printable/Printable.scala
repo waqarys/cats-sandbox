@@ -1,7 +1,13 @@
 package sandbox.typeclass.printable
 
-trait Printable[A] {
+trait Printable[A] { self =>
   def format(value: A): String
+
+  //Functor
+  def contramap[B](func: B => A): Printable[B] = new Printable[B] {
+    override def format(value: B): String =
+      self.format(func(value))
+  }
 }
 
 object Printable {
@@ -12,10 +18,14 @@ object Printable {
 
 object PrintableInstances {
   implicit val stringPrintable = new Printable[String] {
-    override def format(input: String): String = input
+    override def format(value: String): String = s"'$value'"
   }
 
   implicit val intPrintable = new Printable[Int] {
     override def format(value: Int): String = value.toString
+  }
+
+  implicit val booleanPrintable = new Printable[Boolean] {
+    override def format(value: Boolean): String = if(value) "yes" else "no"
   }
 }

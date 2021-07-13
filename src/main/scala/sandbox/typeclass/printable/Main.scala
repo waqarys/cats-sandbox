@@ -6,4 +6,6 @@ object Main extends App {
 
   import PrintableSyntax._
   Cat("Garfield", 4, "ginger and white").print
+
+  Box(123).print
 }
