@@ -20,6 +20,7 @@ object FunctorExamples extends App{
   //A => B  -----> F[A] => F[B]
   val func = (x: Int) => x + 1
   val liftedFunc = Functor[Option].lift(func)
+  liftedFunc.apply(Option(2)).log
   liftedFunc(Option(1)).log
 
   import cats.syntax.functor._
