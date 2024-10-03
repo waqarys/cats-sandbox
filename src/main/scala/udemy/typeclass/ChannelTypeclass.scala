@@ -52,7 +52,7 @@ object Switch {
 }
 
 object ChannelTypeclass extends App {
-  //FileChannel.write[Int](5, IntByteEncoder)
+//  FileChannel.write[Int](5)(IntByteEncoder)
   FileChannel.write[String]("hello")
   FileChannel.write[Switch](Switch(false))
 }
